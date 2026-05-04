@@ -1,0 +1,155 @@
+name: iOS Bug Report (Enhanced)
+description: Comprehensive bug report for iOS with severity, environment, and reproduction details
+title: "[Bug][iOS] "
+labels: ["bug", "iOS", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🐞 iOS Bug Report
+        Thanks for helping improve Tawazon App on iOS! Please fill out ALL required fields.
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity (Required)
+      description: How severe is this bug?
+      options:
+        - 🔴 Critical - App crash, data loss, security issue
+        - 🟠 High - Feature completely broken, no workaround
+        - 🟡 Medium - Feature partially broken, workaround exists
+        - 🟢 Low - Minor UI issue, typo, cosmetic problem
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: iOS Device Model (Required)
+      description: e.g., iPhone 15 Pro, iPad Air 5th gen, iPhone 13
+      placeholder: Enter device model
+    validations:
+      required: true
+
+  - type: input
+    id: ios_version
+    attributes:
+      label: iOS Version (Required)
+      description: Exact iOS version number
+      placeholder: e.g., iOS 17.2, iOS 16.7.2
+    validations:
+      required: true
+
+  - type: input
+    id: app_version
+    attributes:
+      label: App Version (Required)
+      description: Check in Settings → Tawazon → Version
+      placeholder: e.g., v1.2.0 (build 45)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device_type
+    attributes:
+      label: Device Type (Required)
+      options:
+        - iPhone
+        - iPad
+        - iPod Touch
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: Reproduction Frequency (Required)
+      options:
+        - Always (100%)
+        - Frequently (70-99%)
+        - Occasionally (30-69%)
+        - Rarely (<30%)
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce (Required)
+      description: Numbered steps - be specific!
+      placeholder: |
+        1. Open Tawazon App on iPhone 15 Pro (iOS 17.2)
+        2. Log in with valid credentials
+        3. Tap on "Cart" tab
+        4. Add any product to cart
+        5. Tap "Checkout"
+        6. Select "Apple Pay" as payment method
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior (Required)
+      placeholder: Apple Pay sheet should appear, payment processes successfully
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: Actual Behavior (Required)
+      placeholder: App freezes on white screen for 10 seconds, then crashes
+    validations:
+      required: true
+
+  - type: textarea
+    id: console_logs
+    attributes:
+      label: Console Logs / Crash Report (Optional)
+      description: Paste from Xcode Console or attach .crash file from Settings → Privacy → Analytics & Improvements → Analytics Data
+      placeholder: |
+        Paste crash logs here starting with "Incident Identifier: ..."
+      render: shell
+
+  - type: textarea
+    id: screenshots_video
+    attributes:
+      label: Screenshots / Screen Recording (Optional)
+      description: Drag & drop or provide iCloud/Google Drive link
+      placeholder: Attach files or paste link
+
+  - type: checkboxes
+    id: environment_check
+    attributes:
+      label: Environment Testing (Required)
+      options:
+        - label: Issue occurs after force-close app and reopen
+        - label: Issue occurs after device restart
+        - label: Issue occurs on both WiFi and Cellular
+        - label: Issue occurs with latest iOS version
+        - label: Issue occurs with app freshly installed (not updated)
+
+  - type: dropdown
+    id: network_condition
+    attributes:
+      label: Network Condition (Required)
+      options:
+        - WiFi (stable)
+        - WiFi (unstable/poor)
+        - Cellular 5G
+        - Cellular 4G/LTE
+        - Cellular 3G
+        - Offline mode
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context (Optional)
+      description: Any other details that might help
+      placeholder: e.g., "Issue started after iOS 17.2 update. Worked fine on iOS 17.1"
