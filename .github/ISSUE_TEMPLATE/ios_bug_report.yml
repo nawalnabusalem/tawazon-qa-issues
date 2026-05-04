@@ -1,4 +1,4 @@
-name: iOS Bug Report (Enhanced)
+name: iOS Bug Report
 description: Comprehensive bug report for iOS with severity, environment, and reproduction details
 title: "[Bug][iOS] "
 labels: ["bug", "iOS", "needs-triage"]

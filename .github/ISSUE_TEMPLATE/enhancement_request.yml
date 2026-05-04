@@ -1,0 +1,160 @@
+name: Enhancement Request
+description: Suggest new features, improvements, or UX enhancements with business impact analysis
+title: "[Enhancement] "
+labels: ["enhancement", "needs-triage", "feature-request"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 💡 Enhancement Request
+        Help us make Tawazon App better! Please provide clear business value.
+
+  - type: dropdown
+    id: enhancement_type
+    attributes:
+      label: Enhancement Type (Required)
+      options:
+        - 🆕 New Feature
+        - ⚡ Performance Improvement
+        - 🎨 UI/UX Enhancement
+        - 🔒 Security Improvement
+        - 📱 Platform Specific (Android/iOS)
+        - ♿ Accessibility Improvement
+        - 🌐 API Enhancement
+        - 📊 Analytics/Reporting
+    validations:
+      required: true
+
+  - type: input
+    id: feature_name
+    attributes:
+      label: Feature/Enhancement Name (Required)
+      placeholder: e.g., "Offline Mode for Shopping Cart"
+    validations:
+      required: true
+
+  - type: textarea
+    id: user_story
+    attributes:
+      label: User Story (Required)
+      description: Format - "As a [user type], I want [feature] so that [benefit]"
+      placeholder: |
+        As a frequent shopper with limited internet access,
+        I want to browse products and add to cart offline,
+        so that I can continue shopping even without connectivity.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_statement
+    attributes:
+      label: Problem Statement (Required)
+      description: What pain point does this solve?
+      placeholder: |
+        Currently, users lose all cart items when connection drops.
+        This leads to frustration and abandoned carts (40% dropoff rate).
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution (Required)
+      description: Detailed description of how it should work
+      placeholder: |
+        1. Cache product data locally using Room/SQLite
+        2. Allow add/remove items in offline mode
+        3. Sync cart when connection restored
+        4. Show "Offline Mode" badge in UI
+    validations:
+      required: true
+
+  - type: textarea
+    id: mockups_wireframes
+    attributes:
+      label: Mockups / Wireframes (Optional)
+      description: Drag & drop Figma links, images, or PDFs
+      placeholder: https://figma.com/file/example
+
+  - type: dropdown
+    id: business_impact
+    attributes:
+      label: Business Impact (Required)
+      options:
+        - 🚀 High - Direct revenue impact, user retention
+        - 📈 Medium - Improves user experience, reduces support tickets
+        - 📝 Low - Nice to have, minimal impact
+    validations:
+      required: true
+
+  - type: textarea
+    id: metrics_impact
+    attributes:
+      label: Expected Metrics Improvement (Required)
+      placeholder: |
+        - Increase conversion rate by 15%
+        - Reduce cart abandonment from 40% to 25%
+        - Improve user retention by 10% in low-connectivity regions
+    validations:
+      required: true
+
+  - type: dropdown
+    id: target_platform
+    attributes:
+      label: Target Platform (Required)
+      options:
+        - Both Android & iOS
+        - Android Only
+        - iOS Only
+        - Backend API
+        - Admin Dashboard
+
+  - type: textarea
+    id: technical_considerations
+    attributes:
+      label: Technical Considerations (Optional)
+      description: API changes, storage limits, sync conflicts
+      placeholder: |
+        - Need new local database schema
+        - Sync conflict resolution strategy (last-write-wins vs merge)
+        - API endpoint for batch sync (/v1/cart/batch-sync)
+
+  - type: textarea
+    id: alternatives_considered
+    attributes:
+      label: Alternatives Considered (Optional)
+      placeholder: |
+        1. Progressive Web App with service workers
+        2. Reduce image quality for faster loading
+        3. Partial offline mode (read-only)
+
+  - type: dropdown
+    id: estimated_effort
+    attributes:
+      label: Estimated Effort (Required)
+      options:
+        - S (1-3 days)
+        - M (1 week)
+        - L (2-3 weeks)
+        - XL (1+ months)
+
+  - type: checkboxes
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria (Required)
+      options:
+        - label: Feature works offline with no connectivity
+        - label: Data syncs automatically when online
+        - label: No data loss during sync conflicts
+        - label: Works on Android 11+ and iOS 15+
+        - label: < 10% battery drain in offline mode
+        - label: Unit tests > 80% coverage
+        - label: Performance < 100ms response for local ops
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context (Optional)
+      placeholder: Competitor analysis, user research links, beta testing results

@@ -1,0 +1,203 @@
+name: API Bug Report
+description: Comprehensive API bug report with request/response validation, environment, and performance metrics
+title: "[Bug][API] "
+labels: ["bug", "API", "needs-triage", "backend"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🌐 API Bug Report
+        Please provide complete API details. Include request/response for faster debugging.
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity (Required)
+      options:
+        - 🔴 Critical - Data loss, security issue, 500 errors on production
+        - 🟠 High - Core endpoint broken, authentication failure
+        - 🟡 Medium - Incorrect data format, wrong status code
+        - 🟢 Low - Typo in response message, missing optional field
+    validations:
+      required: true
+
+  - type: input
+    id: endpoint
+    attributes:
+      label: API Endpoint (Required)
+      placeholder: https://api.tawazon.com/v1/users/register
+    validations:
+      required: true
+
+  - type: dropdown
+    id: http_method
+    attributes:
+      label: HTTP Method (Required)
+      options:
+        - GET
+        - POST
+        - PUT
+        - PATCH
+        - DELETE
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment (Required)
+      placeholder: dev / staging / production
+      value: staging
+    validations:
+      required: true
+
+  - type: textarea
+    id: request_headers
+    attributes:
+      label: Request Headers (Required)
+      placeholder: |
+        {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIs...",
+          "x-api-version": "1.0"
+        }
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: request_body
+    attributes:
+      label: Request Body (Required for POST/PUT/PATCH)
+      placeholder: |
+        {
+          "email": "test@example.com",
+          "password": "Test@1234",
+          "name": "John Doe"
+        }
+      render: json
+
+  - type: textarea
+    id: expected_response
+    attributes:
+      label: Expected Response (Required)
+      description: What should the API return according to documentation?
+      placeholder: |
+        Status: 201 Created
+        Body: {
+          "status": "success",
+          "data": {
+            "user_id": "uuid",
+            "email": "test@example.com"
+          }
+        }
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_response
+    attributes:
+      label: Actual Response (Required)
+      placeholder: |
+        Status: 400 Bad Request
+        Body: {
+          "error": "Internal server error"
+        }
+      render: json
+    validations:
+      required: true
+
+  - type: input
+    id: response_time_ms
+    attributes:
+      label: Response Time (ms) (Required)
+      placeholder: e.g., 342, 1250, 5000+
+
+  - type: dropdown
+    id: status_code_actual
+    attributes:
+      label: Actual HTTP Status Code (Required)
+      options:
+        - 200 OK
+        - 201 Created
+        - 400 Bad Request
+        - 401 Unauthorized
+        - 403 Forbidden
+        - 404 Not Found
+        - 422 Unprocessable Entity
+        - 429 Too Many Requests
+        - 500 Internal Server Error
+        - 502 Bad Gateway
+        - 503 Service Unavailable
+
+  - type: dropdown
+    id: status_code_expected
+    attributes:
+      label: Expected HTTP Status Code (Required)
+      options:
+        - 200 OK
+        - 201 Created
+        - 204 No Content
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: Steps to Reproduce with Postman/cURL (Required)
+      placeholder: |
+        1. Open Postman
+        2. Import collection: [link to Postman collection]
+        3. Set environment variable "base_url" to {{staging}}
+        4. Send POST request to {{base_url}}/v1/users/register
+        5. Use request body above
+    validations:
+      required: true
+
+  - type: textarea
+    id: postman_request
+    attributes:
+      label: Postman/cURL Command (Required)
+      description: Export from Postman
+      placeholder: |
+        curl --location 'https://api.tawazon.com/v1/users/register' \
+        --header 'Content-Type: application/json' \
+        --header 'Authorization: Bearer token123' \
+        --data '{
+          "email": "test@example.com",
+          "password": "Test@1234"
+        }'
+      render: bash
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation_checks
+    attributes:
+      label: Validation Checks Performed (Required)
+      description: Check all that apply by typing [x]
+      value: |
+        - [ ] Schema validation (JSON Schema)
+        - [ ] Status code validation
+        - [ ] Response time < 500ms
+        - [ ] Authentication check
+        - [ ] Rate limit handling
+        - [ ] Idempotency check (for PUT/PATCH)
+        - [ ] Negative testing (invalid inputs)
+        - [ ] Security headers present
+    validations:
+      required: true
+
+  - type: textarea
+    id: database_impact
+    attributes:
+      label: Database Impact (Optional)
+      description: Did you verify if data was incorrectly saved/updated?
+      placeholder: "Checked PostgreSQL logs: INSERT succeeded but user role not set"
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context (Optional)
+      description: Postman collection link, OpenAPI spec reference, related issues
