@@ -140,18 +140,19 @@ body:
         - L (2-3 weeks)
         - XL (1+ months)
 
-  - type: checkboxes
+  - type: textarea
     id: acceptance_criteria
     attributes:
       label: Acceptance Criteria (Required)
-      options:
-        - label: Feature works offline with no connectivity
-        - label: Data syncs automatically when online
-        - label: No data loss during sync conflicts
-        - label: Works on Android 11+ and iOS 15+
-        - label: < 10% battery drain in offline mode
-        - label: Unit tests > 80% coverage
-        - label: Performance < 100ms response for local ops
+      description: List all conditions that must be met for this enhancement to be considered complete
+      placeholder: |
+        - [ ] Works on all an devices 
+        - [ ] No interference with existing gestures
+        - [ ] Works with VoiceOver enabled
+        - [ ] Unit tests > 80% coverage
+        - [ ] Performance < 100ms response time
+    validations:
+      required: true
 
   - type: textarea
     id: additional_context
